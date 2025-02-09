@@ -19,3 +19,4 @@ class Constants:
     TEXT_CREATE_ORDER = "идентификатор заказа"
     TEXT_INGREDIENT = "Детали ингредиента"
     TEXT_STRUCTURE = "Cостав"
+    TEXT_PROCESS = 'Все текущие заказы готовы!'

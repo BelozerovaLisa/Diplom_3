@@ -20,6 +20,7 @@ class LoginPage(BasePage):
     @allure.step('Нажимаем на кнопку Восстановить')
     def click_recover_button(self):
         self.find_element(locator=Locators.BUTTON_RECOVER).click()
+        WebDriverWait(self.driver, 10).until(EC.url_changes("https://stellarburgers.nomoreparties.site/forgot-password"))
 
     @allure.step('Ищем поле ввода пароля и вводим пароль')
     def text_field_password(self, password):

@@ -28,6 +28,9 @@ class Locators:
     COMPLETED_TODAY = (By.XPATH, "//p[contains(text(), 'Выполнено за сегодня:')]/following-sibling::p")
     ORDER_IN_PROGRESS = (By.XPATH,"//ul[contains(@class, 'OrderFeed_orderListReady__1YFem')]/li")
     ORDER_NUMBER_FROM_MAIN_PAGE = (By.XPATH, "//h2[@class = 'Modal_modal__title_shadow__3ikwq Modal_modal__title__2L34m text text_type_digits-large mb-8']")
-
+    LOGIN_PAGE = (By.XPATH, "//div[@class = 'Auth_login__3hAey']")
+    ACCOUNT_PAGE = (By.XPATH, "//a[@class = 'Account_link__2ETsJ text text_type_main-medium text_color_inactive Account_link_active__2opc9']")
+    RECOVER_PASSWORD_PAGE = (By.XPATH, "//div[@class = 'input pr-6 pl-6 input_type_text input_size_default']")
+    SHADOW_FORM_ORDER = (By.XPATH,"//div[@class = 'Modal_modal_opened__3ISw4 Modal_modal__P3_V5']")
 
 

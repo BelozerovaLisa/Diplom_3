@@ -24,6 +24,9 @@ class PersonalAccountPage(BasePage):
     @allure.step('Логинимся по кнопку Вход')
     def click_enter_button(self):
         self.find_element(locator=Locators.BUTTON_ENTER).click()
+        WebDriverWait(self.driver, 10).until(lambda d: d.execute_script("return document.readyState") == "complete")
+        self.find_element(locator=Locators.BUTTON_PERSONAL_ACCOUNT)
+
 
     @allure.step('Переход в раздел «История заказов»')
     def click_order_history(self):
@@ -32,5 +35,9 @@ class PersonalAccountPage(BasePage):
     @allure.step('Выход из аккаунта')
     def log_out(self):
         self.find_element(locator=Locators.BUTTON_EXIT).click()
+        self.find_element(locator=Locators.LOGIN_PAGE)
+
+
+
 
 

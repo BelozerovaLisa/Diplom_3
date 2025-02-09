@@ -13,7 +13,6 @@ class TestBurgerOrder:
     def test_click_constructor_button(self,driver):
         order_burger = BurgerPage(driver)
         order_burger.go_to_site_order_feed()
-        sleep(2)
         order_burger.click_constructor_button()
         assert driver.current_url == Constants.URL_CONSTRUCTOR
 
@@ -28,7 +27,6 @@ class TestBurgerOrder:
     def test_click_ingredient(self, driver):
         order_burger = BurgerPage(driver)
         order_burger.go_to_site_main()
-        sleep(3)
         order_burger.click_ingredient()
         element = order_burger.element_text(Locators.TEXT_INGREDIENT)
         assert element == Constants.TEXT_INGREDIENT
@@ -37,7 +35,6 @@ class TestBurgerOrder:
     def test_click_close(self, driver):
         order_burger = BurgerPage(driver)
         order_burger.go_to_site_main()
-        sleep(3)
         order_burger.click_ingredient()
         order_burger.click_close()
         element = order_burger.element_text(Locators.TEXT_ON_MAIN_PAGE)
@@ -48,7 +45,6 @@ class TestBurgerOrder:
         order_burger = BurgerPage(driver)
         order_burger.go_to_site_main()
         order_burger.drag_and_drop(Locators.FIRST_INGREDIENT, Locators.CONSTRUCTOR) # Для FireFox не работает перетягивание
-        sleep(2)
         element = order_burger.element_text(Locators.INGREDIENTS_COUNTER)
         assert element == '2'
 
@@ -60,10 +56,7 @@ class TestBurgerOrder:
         personal_account.text_field_email(Constants.email)
         personal_account.text_field_password(Constants.password)
         personal_account.click_enter_button()
-        sleep(2)
-        order_burger.go_to_site_main()
         order_burger.drag_and_drop(Locators.FIRST_INGREDIENT, Locators.CONSTRUCTOR)  # Для FireFox не работает перетягивание
-        sleep(2)
         order_burger.click_place_order()
         element = order_burger.element_text(Locators.TEXT_ORDER_ID)
         assert element == Constants.TEXT_CREATE_ORDER

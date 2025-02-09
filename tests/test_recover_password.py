@@ -20,7 +20,6 @@ class TestRecoverPassword:
         login_page.go_to_site_forgot_password()
         login_page.text_field_email(Constants.email)
         login_page.click_recover_button()
-        sleep(3)
         assert driver.current_url == Constants.URL_RESET_PASSWORD
 
     @allure.title('Клик по кнопке показать/скрыть пароль делает поле активным — подсвечивает его»')
@@ -29,10 +28,8 @@ class TestRecoverPassword:
         login_page.go_to_site_forgot_password()
         login_page.text_field_email(Constants.email)
         login_page.click_recover_button()
-        sleep(3)
         login_page.text_field_password(Constants.password)
         login_page.click_show_button()
-        sleep(2)
         is_find = login_page.find_element(Locators.PASSWORD_TEXT) # ищем на странице поле с не скрытым паролем
         assert is_find.is_displayed()
 

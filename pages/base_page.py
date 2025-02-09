@@ -8,6 +8,8 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 from conftest import driver
 from constants import Constants
+from locators import Locators
+
 
 class BasePage:
     def __init__(self, driver):
@@ -21,29 +23,34 @@ class BasePage:
     @allure.step('Открываем страницу Stallar Burger')  # декоратор
     def go_to_site_main(self):
         self.driver.get(self.url_main)
+        WebDriverWait(self.driver, 10).until(lambda d: d.execute_script("return document.readyState") == "complete")
 
     @allure.step('Открываем страницу авторизации')
     def go_to_site_login(self):
         self.driver.get(self.url_login)
+        WebDriverWait(self.driver, 10).until(lambda d: d.execute_script("return document.readyState") == "complete")
 
     @allure.step('Открываем страницу восстановления пароля')
     def go_to_site_forgot_password(self):
         self.driver.get(self.url_forgot_password)
+        WebDriverWait(self.driver, 10).until(lambda d: d.execute_script("return document.readyState") == "complete")
 
     @allure.step('Открываем страницу личного кабинета')
     def go_to_site_profile(self):
         self.driver.get(self.url_profile)
+        WebDriverWait(self.driver, 10).until(lambda d: d.execute_script("return document.readyState") == "complete")
 
     @allure.step('Открываем страницу ленты заказов')
     def go_to_site_order_feed(self):
         self.driver.get(self.url_order_feed)
+        WebDriverWait(self.driver, 10).until(lambda d: d.execute_script("return document.readyState") == "complete")
 
     @allure.step('Ищем элемент на странице')  # декоратор
-    def find_element(self, locator, time=20):
+    def find_element(self, locator, time=50):
         return WebDriverWait(self.driver, time).until(EC.presence_of_element_located(locator), message=f'Not find element {locator}')
 
     def drag_and_drop(self, source_locator, target_locator):
-        wait = WebDriverWait(self.driver, 10)
+        wait = WebDriverWait(self.driver, 50)
         source = wait.until(EC.presence_of_element_located(source_locator))
         target = wait.until(EC.presence_of_element_located(target_locator))
         self.driver.execute_script("arguments[0].scrollIntoView(true);", source)
@@ -54,6 +61,15 @@ class BasePage:
     def element_text(self, locator_param):
         question_text = self.find_element(locator=locator_param).text
         return question_text
+
+    @allure.step('Ждем когда текст изменится')
+    def wait_for_text_change(self, locator, init_text, timeout=20):
+        element = WebDriverWait(self.driver, timeout).until(
+            lambda d: d.find_element(*locator) if d.find_element(*locator).text.strip() != init_text else False
+        )
+        return element.text
+
+
 
 
 

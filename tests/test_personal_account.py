@@ -22,9 +22,7 @@ class TestPersonalAccount:
         personal_account.text_field_email(Constants.email)
         personal_account.text_field_password(Constants.password)
         personal_account.click_enter_button()
-        sleep(2) # без слипов не видит элемент на странице даже с WebDriverWait в base_page на FireFox
         personal_account.click_personal_account()
-        sleep(2)
         personal_account.click_order_history()
         assert driver.current_url == Constants.URL_ORDER_HISTORY
 
@@ -35,8 +33,6 @@ class TestPersonalAccount:
         personal_account.text_field_email(Constants.email)
         personal_account.text_field_password(Constants.password)
         personal_account.click_enter_button()
-        sleep(1) # без слипов не видит элемент на странице даже с WebDriverWait в base_page на FireFox
         personal_account.click_personal_account()
         personal_account.log_out()
-        sleep(2)
         assert driver.current_url == Constants.URL_LOGIN
