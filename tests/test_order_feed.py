@@ -100,7 +100,6 @@ class TestOrderFeed:
         element = "0"+element
         order_burger.click_close()
         order_burger.click_order_feed_button()
-        # sleep(3)
         element2= order_feed.wait_for_text_change(Locators.ORDER_IN_PROGRESS, Constants.TEXT_PROCESS)
         assert element == element2
 
